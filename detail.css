@@ -1,0 +1,298 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  /* Internal Rendering Optimizations */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* ROOT */
+body {
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #000;
+}
+/* PAGE GRID */
+.page {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  height: 100vh;
+}
+/* LEFT BAR */
+.left-bar {
+  position: relative;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vertical-line {
+  position: absolute;
+  left: 180px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #eae2d8;
+}
+/* ARROWS */
+.nav-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.left-arrow,
+.right-arrow {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #eae2d8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eae2d8;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.left-arrow a {  
+    text-decoration: none;
+    color: #ffffff;
+}
+.right-arrow a {  
+    text-decoration: none;
+    color: #ffffff;
+}
+.text-block a {
+  text-decoration: none;    
+  color: inherit;               
+}
+
+.text-block a:hover {
+  text-decoration: underline;
+  text-decoration-color: white;
+  color: white;
+}
+/* CONTENT AREA */
+.content-area {
+  background: #000;
+  display: flex;
+  align-items: center;
+  padding: 0 85px;
+}
+/* WHO SECTION */
+.who-wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 440px;
+  align-items: center;
+  gap: 100px;
+  width: 100%;
+}
+/* TEXT */
+.text-block {
+  color: #000;
+}
+.who-title {
+  background: #fff;
+  /* Keep your 200px left padding to offset the negative margin */
+  padding: 28px 40px 28px 200px; 
+  margin-bottom: 40px;
+
+  /* 1. Pull the box to the left */
+  margin-left: -200px; 
+
+  /* 2. Pull the box to the right to bridge the 100px gap */
+  margin-right: -100px; 
+
+  /* 3. Ensure the width covers the column + both margin offsets */
+  width: calc(100% + 200px + 100px);
+  
+  /* Ensures it stays a block and expands to the width */
+  display: block; 
+}
+
+.who-title h1 {
+  font-size: 30px;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.who-title h1 span {
+  display: block; /* Still using the span method for the line break */
+}
+.text-block p {
+  color: #eae2d8;
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-left: -60px; /* subtle optical alignment */
+  padding: 10px;
+}
+/* IMAGE */
+.image-box {
+  border: 6px solid #fff;
+  padding: 1px;
+  background: #000;
+}
+.image-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.mobile-nav-arrows {
+    display: none; 
+}
+/* -----------------------------------
+   TABLET & MOBILE — 768px and below
+----------------------------------- */
+@media (max-width: 768px) {
+
+  /* 1. ENABLE SCROLLING */
+  html, body {
+    overflow-y: auto !important; /* Force override the 'hidden' at the top */
+    height: auto;
+  }
+
+  .page {
+    grid-template-columns: 1fr; /* Stack layout */
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* 2. HANDLE THE LINE & SIDEBAR */
+  .left-bar {
+    display: none; /* Hide the fixed 180px sidebar */
+  }
+
+  .page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background: #eae2d8;
+    z-index: 5;
+  }
+
+  /* 3. CONTENT ADJUSTMENTS */
+  .content-area {
+    padding: 80px 20px 60px 50px; /* Space for arrow top and line left */
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .who-wrapper {
+    grid-template-columns: 1fr; /* Stack text and image */
+    gap: 30px;
+  }
+
+  /* 4. RESET THE WHITE TITLE BOX */
+  .who-title {
+    /* Reset the massive desktop negative margins */
+    margin-left: -30px; 
+    margin-right: 0;
+    padding: 20px 20px 20px 50px;
+    width: calc(100% + 50px);
+    margin-top: -60px;
+  }
+
+  .who-title h1 {
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .text-block p {
+    margin-left: 0;
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  /* 5. REDUCED ARROW SIZE (Link Support) */
+  /* This shrinks the 44px arrow to 22px */
+  .top-arrow {
+    position: absolute;
+    top: 25px; 
+    right: 20px;
+    width: 22px;
+    height: 22px;
+    transform: rotate(45deg);
+    display: block; /* Important for <a> tag behavior */
+    z-index: 100;
+  }
+
+  .top-arrow::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 3px;
+    background: #fff;
+  }
+
+  .top-arrow::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 22px;
+    background: #fff;
+  }
+
+  .top-arrow span {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 30px;
+    left: 9.5px;
+    top: -4px;
+    background: #fff;
+  }
+
+  /* 6. IMAGE BOX */
+  .image-box {
+    border-width: 4px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+    /* 7. MOBILE NAVIGATION ARROWS UNDER IMAGE */
+    .mobile-nav-arrows {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: calc(100% + 10px); /* Adjusts for the padding of the container */
+        margin-left: -10px;       /* Pulls them closer to the screen edges */
+        margin-top: 5px;
+        padding-bottom: 5px;     /* Bottom breathing room */
+    }
+
+    /* Re-applying the desktop arrow style for the mobile container */
+    .mobile-nav-arrows .left-arrow,
+    .mobile-nav-arrows .right-arrow {
+        width: 60px;
+        height: 60px;
+        border: 2px solid #eae2d8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+    }
+
+    .mobile-nav-arrows a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 300;
+        line-height: 1;
+        display: block;
+    }
+}

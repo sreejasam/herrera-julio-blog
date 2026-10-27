@@ -1,0 +1,19 @@
+# Google Trust Optimized robots.txt for https://www.herrera-julio.com/
+# Last Updated: 2026-02-16
+
+User-agent: *
+Allow: /
+Allow: /uploads/*.webp
+Allow: /uploads/*.png
+Allow: /uploads/*.jpg
+
+# Prevent indexing of technical files
+Disallow: /style.css
+Disallow: /detail.css
+Disallow: /.htaccess
+
+# Host recommendation
+Host: https://www.herrera-julio.com/
+
+# Sitemap location
+Sitemap: https://www.herrera-julio.com/sitemap.xml

@@ -1,0 +1,260 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  overflow: hidden;
+}
+/* ROOT */
+body {
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #eae2d8;
+  height: 100%;
+  overflow: hidden;
+  /* Internal Rendering Optimizations */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* PAGE GRID */
+.page {
+  display: grid;
+  grid-template-columns: 200px 1.2fr 420px 0px;
+  min-height: 100vh;
+}
+/* LEFT BAR */
+.left-bar {
+  position: relative;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vertical-line {
+  position: absolute;
+  left: 180px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #eae2d8;
+}
+.left-arrow {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #eae2d8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eae2d8;
+  font-size: 30px;
+  font-weight: 300;
+  z-index: 5;
+  margin-bottom: 120px;
+}
+.left-arrow a {  
+    text-decoration: none;
+    color: #ffffff;
+}
+/* CENTER CONTENT */
+.center-content {
+  position: relative;
+  background: #000;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(-40px);
+}
+.name {
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+h1 {
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.05;
+}
+h1 span {
+  font-weight: 300;
+  display: block;
+  margin-top: 10px;
+}
+.email {
+  margin-top: 60px;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+/* TOP RIGHT ARROW */
+.top-arrow {
+  position: absolute;
+  top: 180px;
+  right: 250px;
+  width: 56px;
+  height: 56px;
+}
+.top-arrow::before,
+.top-arrow::after,
+.top-arrow span {
+  content: "";
+  position: absolute;
+  background: #eae2d8;
+}
+/* Horizontal top stroke */
+.top-arrow::before {
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 8px;
+}
+/* Vertical right stroke */
+.top-arrow::after {
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 56px;
+}
+/* Diagonal stroke */
+.top-arrow span {
+  width: 8px;
+  height: 70px;
+  left: 24px;
+  top: -6px;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+/* IMAGE COLUMN */
+.image-column {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
+}
+.image-column img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  object-fit: cover;
+  background: #000;
+}
+/* END COLUMN */
+.end-column {
+  background: #000;
+}
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  .page {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Hiding desktop-only sidebars */
+  .left-bar,
+  .end-column {
+    display: none;
+  }
+
+  /* CENTER CONTENT STRUCTURE */
+  .center-content {
+    padding: 110px 32px 0 60px; /* Scaled padding for tablet */
+    transform: none;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  /* Background Vertical Lines */
+  .center-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 30px; /* Adjusted alignment for the vertical line */
+    width: 2px;
+    height: 140px; 
+    background: #eae2d8;
+    z-index: 1;
+  }
+
+  .page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30px;
+    width: 2px;
+    background: #eae2d8;
+  }
+
+  /* TYPOGRAPHY */
+  .name {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: 56px; /* Scaled up from 42px */
+    letter-spacing: 1.6px;
+    line-height: 1.05;
+  }
+
+  h1 span {
+    margin-top: 8px;
+    display: block;
+  }
+
+  .email {
+    margin-top: 32px;
+    font-size: 16px;
+  }
+
+/* TOP RIGHT ARROW - Reduced Size */
+  .top-arrow {
+    top: 268px; 
+    right: 32px; 
+    width: 22px;        /* Reduced from 44px */
+    height: 22px;       /* Reduced from 44px */
+    position: absolute;
+    transform: rotate(45deg); 
+  }
+
+  .top-arrow::before {
+    width: 22px;        /* Reduced from 44px */
+    height: 3px;        /* Reduced thickness from 6px */
+  }
+
+  .top-arrow::after {
+    width: 3px;         /* Reduced thickness from 6px */
+    height: 22px;       /* Reduced from 44px */
+  }
+
+  .top-arrow span {
+    width: 3px;         /* Reduced thickness from 6px */
+    height: 29px;       /* Reduced from 58px */
+    left: 9.5px;        /* Re-centered (half of width minus half of thickness) */
+    top: -3.5px;        /* Adjusted offset */
+  }
+
+  /* IMAGE COLUMN */
+  .image-column {
+    padding: 20px 1px 10px;
+    padding-left: 60px; /* Matches the content left-padding */
+    justify-content: flex-start;
+  }
+
+  .image-column img {
+    max-width: 100%;
+    display: block;
+  }
+}
